@@ -4,6 +4,12 @@ pipeline {
         AWS_ACCESS_KEY_ID = credentials('aws_access_key_id')
         AWS_SECRET_ACCESS_KEY = credentials('aws_secret_access_key')
         AWS_DEFAULT_REGION = "us-east-1"
+        IMAGE_NAME = "app"
+        AWS_ACCOUNT_ID = "595496445232"
+        IMAGE_REPO_NAME = "vaibhav"
+        IMAGE_TAG = "${BUILD_NUMBER}"
+        REPOSITORY_URL = "595496445232.dkr.ecr.us-east-1.amazonaws.com/vaibhav"
+        ECR_REPO_NAME = "vaibhav"
     }
 
     stages {
@@ -33,11 +39,44 @@ pipeline {
             }
         }
 
-        stage('terraform apply for eks-cluster'){
+       # stage('terraform apply for eks-cluster'){
+       #     steps{
+       #         script {
+       #             sh "cd eks-tfconf && terraform apply --auto-approve"
+       #         }
+       #     }
+       # }
+       
+       stage('docker build'){
             steps{
                 script {
-                    sh "cd eks-tfconf && terraform destroy --auto-approve"
+                    app = docker.build("${IMAGE_NAME}")
                 }
+            }
+        }
+
+        stage('Logging to ECR'){
+            steps{
+                script {
+                    sh "aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com"
+                }
+            }
+        }
+
+        stage('Docker Push'){
+            steps{
+                script{
+                    sh "docker tag ${IMAGE_NAME}:latest 595496445232.dkr.ecr.us-east-1.amazonaws.com/vaibhav:${BUILD_NUMBER}"
+                    sh "docker push 595496445232.dkr.ecr.us-east-1.amazonaws.com/vaibhav:${BUILD_NUMBER}"
+                }
+            }
+        }
+
+        stage('Trigger ManifestUpdate') {
+            steps{
+                echo "triggering k8 deployment image update"
+                echo " NOTE: K8 MANIFEST REPO IS kubernetes-manifests"
+                build job: 'kubernetes-manifest', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
             }
         }
 
