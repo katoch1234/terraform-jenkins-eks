@@ -10,5 +10,13 @@ pipeline {
             }
             }
         }
+
+        stage('terraform init for eks-cluster'){
+            steps{
+                script {
+                    sh "cd eks-tfconf && terraform init"
+                }
+            }
+        }
     }
 }
