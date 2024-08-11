@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "jenkins-backend6789" {
-  bucket = "jenkins-backend678"
+  bucket = "jenkins-backend678-kode-kloud"
   tags = {
     Name = "S3 Remote Terraform State Store"
   }

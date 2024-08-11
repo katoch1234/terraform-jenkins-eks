@@ -26,7 +26,6 @@ pipeline {
         stage('terraform plan for eks-cluster'){
             steps{
                 script {
-                    sh "cd eks-tfconf"
                     sh "cd eks-tfconf && terraform fmt"
                     sh "cd eks-tfconf && terraform validate"
                     sh "cd eks-tfconf && terraform plan"
