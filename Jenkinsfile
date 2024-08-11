@@ -39,13 +39,13 @@ pipeline {
             }
         }
 
-       # stage('terraform apply for eks-cluster'){
+      /* # stage('terraform apply for eks-cluster'){
        #     steps{
        #         script {
        #             sh "cd eks-tfconf && terraform apply --auto-approve"
        #         }
        #     }
-       # }
+       # } */
        
        stage('docker build'){
             steps{
