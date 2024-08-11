@@ -34,6 +34,7 @@ module "eks" {
 
   cluster_name    = "my-cluster"
   cluster_version = "1.30"
+  create_cloudwatch_log_group = false
 
   cluster_endpoint_public_access = true
 
