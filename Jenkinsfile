@@ -20,9 +20,18 @@ pipeline {
             steps{
                 script {
                     sh "cd eks-tfconf && terraform init"
-                    sh "echo 'sep 2 done'"
                 }
             }
         }
+        stage('terraform plan for eks-cluster'){
+            steps{
+                script {
+                    sh "terrafrom fmt"
+                    sh "terraform validate"
+                    sh "terraform plan"
+                }
+            }
+        }
+
     }
 }
