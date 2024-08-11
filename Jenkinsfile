@@ -27,9 +27,9 @@ pipeline {
             steps{
                 script {
                     sh "cd eks-tfconf"
-                    sh "terraform fmt"
-                    sh "terraform validate"
-                    sh "ls -lhtra && terraform plan"
+                    sh "cd eks-tfconf && terraform fmt"
+                    sh "cd eks-tfconf && terraform validate"
+                    sh "cd eks-tfconf && terraform plan"
                 }
             }
         }
