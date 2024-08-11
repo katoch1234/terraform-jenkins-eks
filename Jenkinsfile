@@ -13,7 +13,5 @@ pipeline {
             }
             }
         }
-
-        stage('')
     }
 }
