@@ -19,7 +19,7 @@ pipeline {
         stage('terraform init for eks-cluster'){
             steps{
                 script {
-                    sh "cd eks-tfconf && rm -r terraform.tfstate .terraform.lock.hcl .terraform && terraform init"
+                    sh "cd eks-tfconf && ls -lhtra && terraform init"
                 }
             }
         }
