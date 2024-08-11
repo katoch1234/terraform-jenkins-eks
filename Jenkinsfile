@@ -36,7 +36,7 @@ pipeline {
         stage('terraform apply for eks-cluster'){
             steps{
                 script {
-                    sh "cd eks-tfconf && terraform apply --auto-approve"
+                    sh "cd eks-tfconf && terraform destroy --auto-approve"
                 }
             }
         }
