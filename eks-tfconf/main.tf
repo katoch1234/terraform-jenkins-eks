@@ -69,7 +69,7 @@ module "eks" {
     # One access entry with a policy associated
     dev-team = {
       kubernetes_groups = []
-      principal_arn     = "arn:aws:iam::123456789012:role/something"
+      principal_arn     = "arn:aws:iam::654654270687:user/kk_labs_user_712883"
 
       policy_associations = {
         nodes = {
