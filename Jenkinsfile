@@ -29,7 +29,7 @@ pipeline {
                     sh "cd eks-tfconf"
                     sh "terraform fmt"
                     sh "terraform validate"
-                    sh "terraform plan"
+                    sh "ls -lhtra && terraform plan"
                 }
             }
         }
