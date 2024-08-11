@@ -15,6 +15,7 @@ pipeline {
             steps{
                 script {
                     sh "cd eks-tfconf && terraform init"
+                    sh "echo 'sep 2 done'"
                 }
             }
         }
