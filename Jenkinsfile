@@ -5,10 +5,10 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('aws_secret_access_key')
         AWS_DEFAULT_REGION = "us-east-1"
         IMAGE_NAME = "app"
-        AWS_ACCOUNT_ID = "891377015170"
+        AWS_ACCOUNT_ID = "891377344088"
         IMAGE_REPO_NAME = "vaibhav"
         IMAGE_TAG = "${BUILD_NUMBER}"
-        REPOSITORY_URL = "891377015170.dkr.ecr.us-east-1.amazonaws.com/vaibhav"
+        REPOSITORY_URL = "891377344088.dkr.ecr.us-east-1.amazonaws.com/vaibhav"
         ECR_REPO_NAME = "vaibhav"
     }
 
