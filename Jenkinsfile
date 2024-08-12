@@ -66,7 +66,7 @@ pipeline {
         stage('Docker Push'){
             steps{
                 script{
-                    sh "docker tag ${IMAGE_NAME}:latest 595496445232.dkr.ecr.us-east-1.amazonaws.com/vaibhav:${BUILD_NUMBER}"
+                    sh "docker tag ${IMAGE_NAME}:latest ${REPOSITORY_URL}:${BUILD_NUMBER}"
                     sh "docker push 595496445232.dkr.ecr.us-east-1.amazonaws.com/vaibhav:${BUILD_NUMBER}"
                 }
             }
