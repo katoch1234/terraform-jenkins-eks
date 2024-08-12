@@ -41,3 +41,8 @@ echo \
   apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
   usermod -aG docker jenkins
   chmod 666 /var/run/docker.sock
+
+  #Installing aws-cli
+  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+  apt install unzip -y && unzip awscliv2.zip
+  ./aws/install
