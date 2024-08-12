@@ -50,7 +50,7 @@ pipeline {
        stage('docker build'){
             steps{
                 script {
-                    sh "docker system prune -a"
+                    sh "docker system prune -a --force"
                     app = docker.build("${IMAGE_NAME}")
                 }
             }
